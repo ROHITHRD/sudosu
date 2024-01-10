@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sample HTML</title>
+    <title>Guess the Number Game</title>
+    <style>
+        /* Basic styling for the game */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <input type="number" id="guessInput">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <p id="message"></p>
 
-    <p>Hi, this is sample HTML code.</p>
-    <p>My name is Rohith.</p>
+    <script>
+        // JavaScript code for the game logic
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
 
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value);
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                document.getElementById('message').innerHTML = 'Please enter a valid number between 1 and 100.';
+            } else {
+                attempts++;
+                if (guess === randomNumber) {
+                    document.getElementById('message').innerHTML = `Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts.`;
+                } else if (guess < randomNumber) {
+                    document.getElementById('message').innerHTML = 'Try a higher number.';
+                } else {
+                    document.getElementById('message').innerHTML = 'Try a lower number.';
+                }
+            }
+        }
+    </script>
 </body>
 </html>
